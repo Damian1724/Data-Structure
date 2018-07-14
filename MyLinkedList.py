@@ -9,11 +9,15 @@ class Node:
 
 
 class MyLinkedList:
+
+    size=0
+
     def __init__(self):
         self.head=Node()
 
 
     def append(self,data):
+        self.size+=1
         currrent=self.head
         new_node=Node(data)
         while currrent.next is not None:
@@ -22,12 +26,7 @@ class MyLinkedList:
 
 
     def lenght(self):
-        current=self.head
-        total=0
-        while current.next is not None:
-            total+=1
-            current=current.next
-        return total
+        return self.size
 
 
     def display(self):
@@ -39,8 +38,8 @@ class MyLinkedList:
 
 
     def get(self,index):
-        if index > self.lenght():
-            print("ERROR: Index out of range")
+        if index > self.size:
+            raise Exception("ERROR: Index out of range")
             return None
         current=self.head
         pos=0
@@ -51,10 +50,11 @@ class MyLinkedList:
             pos+=1
 
 
-    def erase(self,index):
-        if index > self.lenght():
-            print("ERROR: Index out of range")
+    def remove(self,index):
+        if index > self.size:
+            raise Exception("ERROR: Index out of range")
             return
+        self.size-=1
         current_node=self.head
         pos=0
         while True:
