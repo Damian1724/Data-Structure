@@ -27,16 +27,8 @@ class MyLinkedList:
 
     def lenght(self):
         return self.size
-
-
-    def display(self):
-        current=self.head.next
-        while current.next is not None:
-            print(current.data,end=" ")
-            current=current.next
-        print(current.data)
-
-
+    
+    
     def get(self,index):
         if index > self.size:
             raise Exception("ERROR: Index out of range")
