@@ -15,6 +15,7 @@ class myqueue:
 
    def __init__(self):
        self.head=Node()
+       self.aux=self.head
 
 
    def is_empty(self):
@@ -26,10 +27,8 @@ class myqueue:
    def enqueue(self,element):
        self.size+=1
        _node_=Node(element)
-       current=self.head
-       while current.next is not None:
-           current=current.next
-       current.next=_node_
+       self.aux.next=_node_
+       self.aux=self.aux.next
 
 
    def dequeue(self):
