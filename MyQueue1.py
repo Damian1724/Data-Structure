@@ -9,6 +9,7 @@ class myqueue:
 
    def __init__(self):
        self.lista=[]
+   
 
 
    def is_empty(self):
