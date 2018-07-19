@@ -17,10 +17,11 @@ class MyQueue:
         self.lista.append(element)
 
     def dequeue(self):
-        self.size -= 1
-        self.lista.pop(0)
+        if self.size > 0:
+            self.size -= 1
+            self.lista.pop(0)
+        else:
+            raise Exception("The queue is empty")
 
     def lenght(self):
         return self.size
-
-    
