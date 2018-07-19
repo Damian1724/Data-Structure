@@ -3,7 +3,7 @@ Author:Damian Cruz
 */
 
 
-class myqueue:
+class MyQueue:
 
     def __init__(self):
         self.lista = []
