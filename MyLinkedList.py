@@ -25,7 +25,7 @@ class MyLinkedList:
         return self.size
 
     def get(self, index):
-        if index > self.size or index < 0:
+        if index >= self.size or index < 0:
             raise Exception("ERROR: Index out of range")
         current = self.head
         pos = 0
@@ -35,7 +35,7 @@ class MyLinkedList:
         return current.data
 
     def dequeue(self, index):
-        if index > self.size or index < 0:
+        if index >= self.size or index < 0:
             raise Exception("ERROR: Index out of range")
         self.size -= 1
         current= self.head
