@@ -12,5 +12,5 @@ for i in my_randoms:
     my_tree.insert(i)    
 for i in my_randoms:
     if my_tree.contain(i) is False:
-        raise Exception ("The number",i, "is not in the tree or it was misplaced it")
+        raise Exception ("The number {} is not in the tree or it was misplaced it".format(i))
 print("YES! ,the code is working")
