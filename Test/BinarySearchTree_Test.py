@@ -2,7 +2,7 @@
 Author: Damian Cruz
 */
 
-
+#checking if all the numbers were placed correctly
 import random
 my_tree=BinarySearchTree()
 my_randoms=[]
