@@ -41,4 +41,3 @@ def MyQueue_timing():
         varience_enqueue+=(timing_enqueue[i]-average_enqueue)**2
         variance_dequeue+=(timing_dequeue[i]-average_dequeue)**2
     print("The varience for enqueue is {} and for dequeue is {}".format(varience_enqueue/199,variance_dequeue/199))
-    print(varience_enqueue/199)
