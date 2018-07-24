@@ -1,13 +1,12 @@
 /*
 Author:Damian Cruz
 */
-def MyQueue_timing():
+def enqueue_timing():
     import time
     import random
     my_randoms=[]
     cola=MyQueue()
-    timing_enqueue=[]
-    timing_dequeue=[]
+    timing=[]
     for i in range(200):
         for j in range(10000):
             my_randoms.append(random.randrange(1,1000000000000,2))
@@ -15,29 +14,47 @@ def MyQueue_timing():
         for j in my_randoms:
             cola.enqueue(j)
         end = time.clock()
-        timing_enqueue.append(end-start)
+        timing.append(end-start)
+        my_randoms.clear() 
+    sum_timing=0
+    for i in timing:
+        sum_timing+=i
+    average=sum_timing/200
+    print("The average time is {}".format(average))
+    sorted(timing)
+    median=(timing[99]+timing[100])/2
+    print("The median is {}".format(median))
+    varience=0
+    for i in timing:
+        varience+=(i-average)**2
+    print("The varience is {}".format(varience/199))
+     
+def dequeue_timing():
+    import time
+    import random
+    my_randoms=[]
+    cola=MyQueue()
+    timing=[]
+    for i in range(200):
+        for j in range(10000):
+            my_randoms.append(random.randrange(1,1000000000000,2))
+        for j in my_randoms:
+            cola.enqueue(j)
         start = time.clock()
         for j in range(len(my_randoms)):
             cola.dequeue()
         end = time.clock()
-        timing_dequeue.append(end-start)
+        timing.append(end-start)
         my_randoms.clear()
-    sum_enqueue=0
-    sum_dequeue=0
-    for i in range(200):
-        sum_enqueue+=timing_enqueue[i]
-        sum_dequeue+=timing_dequeue[i]
-    average_enqueue=sum_enqueue/200
-    average_dequeue=sum_dequeue/200
-    print("The average time for enqueue is {} and for dequeue is {}".format(average_enqueue,average_dequeue))
-    sorted(timing_enqueue)
-    sorted(timing_dequeue)
-    median_enqueue=(timing_enqueue[99]+timing_enqueue[100])/2
-    median_dequeue=(timing_dequeue[99]+timing_dequeue[100])/2
-    print("The median for enqueue is {} and for dequeue is {}".format(median_enqueue,median_dequeue))
-    varience_enqueue=0
-    variance_dequeue=0
-    for i in range(200):
-        varience_enqueue+=(timing_enqueue[i]-average_enqueue)**2
-        variance_dequeue+=(timing_dequeue[i]-average_dequeue)**2
-    print("The varience for enqueue is {} and for dequeue is {}".format(varience_enqueue/199,variance_dequeue/199))
+    sum_timing=0
+    for i in timing:
+        sum_timing+=i
+    average=sum_timing/200
+    print("The average time is {}".format(average))
+    sorted(timing)
+    median=(timing[99]+timing[100])/2
+    print("The median is {}".format(median))
+    varience=0
+    for i in timing:
+        varience+=(i-average)**2
+    print("The varience is {}".format(varience/199))
