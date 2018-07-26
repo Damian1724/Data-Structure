@@ -59,6 +59,7 @@ def enqueue():
         timing.append(enqueue_timing(cola))
 
     average,median,varience=statistical_calculation(timing,n)
+    print(average,median,varience)
 
 def dequeue():
     timing = []
@@ -68,6 +69,7 @@ def dequeue():
         timing.append(dequeue_timing(cola))
         
     average,median,varience=statistical_calculation(timing,n)
+    print(average,median,varience)
     
 #These two methods are for Myqueue_LinkedList    
 
@@ -79,6 +81,7 @@ def enqueue():
         timing.append(enqueue_timing(cola))
 
     average,median,varience=statistical_calculation(timing,n)
+    print(average,median,varience)
 
 def dequeue():
     timing = []
@@ -88,3 +91,4 @@ def dequeue():
         timing.append(dequeue_timing(cola))
         
     average,median,varience=statistical_calculation(timing,n)
+    print(average,median,varience)
