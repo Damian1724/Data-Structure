@@ -4,91 +4,87 @@ Author:Damian Cruz
 
 #operations
 
-def statistical_calculation(timing):
+def statistical_calculation(timing,n):
     sum_timing = 0
     for i in timing:
         sum_timing += i
-        
-    average = sum_timing / 200
-    print("The average time is {}".format(average))
+
+    average = sum_timing / n
     sorted(timing)
-    median = (timing[99] + timing[100]) / 2
-    print("The median is {}".format(median))
+    median = (timing[int((n/2)-1)] + timing[int(n/2)]) / 2
     varience = 0
     for i in timing:
         varience += (i - average) ** 2
-        
-    print("The varience is {}".format(varience / 199))
-    
-def enqueue_timing(cola,my_randoms,timing):
+
+    return average,median,varience
+
+def enqueue_timing(cola):
     import time
     import random
+    my_randoms = []
     for j in range(10000):
         my_randoms.append(random.randrange(1, 1000000000000, 2))
-        
+
     start = time.clock()
     for j in my_randoms:
         cola.enqueue(j)
-        
-    end = time.clock()
-    timing.append(end - start)
-    my_randoms.clear()
-   
 
-def dequeue_timing(cola,my_randoms,timing):
+    end = time.clock()
+    return end - start
+
+def dequeue_timing(cola):
     import time
     import random
+    my_randoms = []
     for j in range(10000):
         my_randoms.append(random.randrange(1, 1000000000000, 2))
-        
+
     for j in my_randoms:
         cola.enqueue(j)
-        
+
     start = time.clock()
     for j in range(len(my_randoms)):
         cola.dequeue()
-        
+
     end = time.clock()
-    timing.append(end - start)
-    my_randoms.clear()
-    
+    return end - start
 
 # These two methods are for MyQueue
 
 def enqueue():
-    my_randoms = []
     timing = []
+    n=200
     cola=MyQueue()
-    for i in range(200):
-        enqueue_timing(cola,my_randoms,timing)
-        
-    statistical_calculation(timing)
-    
-def dequeue():
-    my_randoms = []
-    timing = []
-    cola = MyQueue()
-    for i in range(200):
-        dequeue_timing(cola,my_randoms,timing)
-        
-    statistical_calculation(timing)
+    for i in range(n):
+        timing.append(enqueue_timing(cola))
 
+    average,median,varience=statistical_calculation(timing,n)
+
+def dequeue():
+    timing = []
+    n=200
+    cola=MyQueue()
+    for i in range(n):
+        timing.append(dequeue_timing(cola))
+        
+    average,median,varience=statistical_calculation(timing,n)
+    
 #These two methods are for Myqueue_LinkedList    
-    
+
 def enqueue():
-    my_randoms = []
     timing = []
-    for i in range(200):
+    n=200
+    for i in range(n):
         cola=MyQueue_LinkedList()
-        enqueue_timing(cola,my_randoms,timing)
-        
-    statistical_calculation(timing)
-    
- def dequeue():
-    my_randoms = []
+        timing.append(enqueue_timing(cola))
+
+    average,median,varience=statistical_calculation(timing,n)
+
+def dequeue():
     timing = []
-    for i in range(200):
+    n=200
+    for i in range(n):
         cola=MyQueue_LinkedList()
-        dequeue_timing(cola,my_randoms,timing)
+        timing.append(dequeue_timing(cola))
         
-    statistical_calculation(timing)
+    average,median,varience=statistical_calculation(timing,n)
